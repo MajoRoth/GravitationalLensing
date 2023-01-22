@@ -127,7 +127,6 @@ def einstein_ring_3D(x0=0, y0=0, z0=1000, x1=0, y1=0, z1=-1300, theta_range=[], 
         for phi in phi_range:
             route = ode3D(x0=x0, y0=y0, z0=z0, theta=theta, phi=phi, s=4000)
             x, y, z, _, _, _ = zip(*route)
-            print("Calculated a Route with theta = {} and phi = {}".format(theta, phi))
 
             if calculate_distance_route_from_point_3D(x, y, z, x1, y1, z1):
                 routes.append(
@@ -224,6 +223,11 @@ def section_2():
     plt.title("Einsteing Ring x-y view")
     plt.savefig('x-y circle')
     plt.show()
+
+    r1 = np.sqrt(x_y_points[0][0] ** 2 + x_y_points[1][0] ** 2)
+    beta = approximated_analytical_angle(1.5) - np.deg2rad(1.5)  # alpha - theta
+    r2 = 500 * beta  # z_0 * beta
+    print("radius of circle is {} and approximated anayltical radius is {}".format(r1, r2))
 
 
 def section_3():
